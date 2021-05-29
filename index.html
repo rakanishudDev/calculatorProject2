@@ -5,97 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project one</title>
     <style>
-      h1 {
-        text-align: center;
-      }
-      .personalPage {
-        display: none;
-        padding: 5px;
-        
-      }
-      .mainC {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        background-color: rgb(223, 223, 223);
-        max-width: 300px;
-      }
-      
-      .flexCenter {
-        display: flex;
-        justify-content: center;
-      }
-      .cartDiv {
-        padding-top: 10px;
-      }
-      .logo1 {
-        
-        width: 10%;
-        float: left;
-      }
-      .logo2 {
-        
-        width: 10%;
-        float: right;
-      }
-      .createCartP {
-        text-align: center;
-      }
-      .hello {
-        padding-left: 5px;
-        text-align: center;
-      }
-      .deleteBtn {
-        display: none;
-        width: 50%;
-        align-self: center;
-      }
-     
+     .display {
+       width: 300px;
+       height: 75px;
+      background-color: gray;
+     }
+     .keyboard {
+       width: 300px;
+       height: 300px;
+      font-size: 30px;
+      display: inline-grid;
+      background-color: gray;
+      grid-template-columns: auto auto auto auto;
+      grid-gap: 5px;
+
+     }
+     .grid-item {
+       background-color: rgb(139, 139, 255);
+       text-align: center;
+     }
 
 
     </style>
   </head>
   <body>
-    <div class="flexCenter">
-      
-    <div class="mainC">
-      <div>
-        <img class="logo1" src="cart.png">
-        <img class="logo2" src="cart.png">
-        <h1>Shopping List</h1>
+    <div>
+
+      <div class="display"></div>
+
+      <div class="keyboard">
+        <div class="grid-item">1</div>
+        <div class="grid-item">2</div>
+        <div class="grid-item">3</div>
+        <div class="grid-item">=</div>
+        <div class="grid-item">4</div>
+        <div class="grid-item">5</div>
+        <div class="grid-item">6</div>
+        <div class="grid-item">C</div>
+        <div class="grid-item">7</div>
+        <div class="grid-item">8</div>
+        <div class="grid-item">9</div>
+        <div class="grid-item">0</div>
+        <div class="grid-item">+</div>
+        <div class="grid-item">-</div>
+        <div class="grid-item">*</div>
+        <div class="grid-item">/</div>
+
+
+
       </div>
 
-      <p class="createCartP">Create new one or use existing shopping cart</p>
-      <button class="loginBtn">Create Shopping cart</button>
-      <select class="select">
-        <option disabled selected value>Choose your shopping cart</option>
-      </select>
-      <button class="deleteAll">Delete all carts</button>
-      <h2 class="hello"></h2>
-      <button class="deleteBtn">Delete current list</button>
-      <div class="personalPage">
-        <p>Add item in your shopping list</p>
-        <input required type="text" class="addItem" placeholder="Shopping item">
-        <button class="add">Add</button>
-        <div class="cartDiv">
-          <ol class="shoppingList">
-
-          </ol>
-        </div>
+    </div>
         
-      
-    </div>
-    </div>
     
-    </div>
-    
-
 
 
 
     <script>
-     
 
+      const gridItem = document.querySelectorAll('.grid-item');
+      for (let i = 0; i < gridItem.length; i++) {
+        gridItem[i].addEventListener('click', function() {
+          gridItem[i].style.backgroundColor = 'purple';
+        });
+      }
+     
+       
+      
+      
     </script>
   </body>
 </html>
