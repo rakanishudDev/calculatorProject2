@@ -212,10 +212,6 @@
       };
 
 
-
-
-
-
       // keyboard EventListener //
       let calcNumber = 0;
       for (let i = 0; i < gridItem.length; i++) {
@@ -264,8 +260,7 @@
         displayVastus(vastus);
       });
 
-      
-
+      // functions area //
       function updateingObject(x) {
         number[number.counter].numb += x;
       };
@@ -275,10 +270,12 @@
         display.textContent += calcNumber;
         console.log(calcNumber+ ' calcNumb display');
       };
+
       function displayVastus(x) {
         display.textContent = x;
         console.log('Answer is ' + vastus);
       }
+
 
       // cancel EventListener //
       cancel.addEventListener('click', function() {
@@ -290,8 +287,8 @@
         }
         vastus = 0;
         number.counter = 0;
-
       });
+
 
       // calculator buttons effect //
       //numbers//
@@ -304,7 +301,8 @@
         gridItem[i].addEventListener('mouseup', function() {
           gridItem[i].style.backgroundColor = 'rgb(139, 139, 255)';
         })
-      }
+      };
+
       //operators//
       for (let i = 0; i < operators.length; i++) {
         operators[i].addEventListener('mousedown', function() {
@@ -315,7 +313,8 @@
         operators[i].addEventListener('mouseup', function() {
           operators[i].style.backgroundColor = 'rgb(139, 139, 255)';
         })
-      }
+      };
+
       //võrdub//
       operatorVõrdub.addEventListener('mousedown', function() {
         operatorVõrdub.style.backgroundColor = 'green';
@@ -323,6 +322,7 @@
       operatorVõrdub.addEventListener('mouseup', function() {
         operatorVõrdub.style.backgroundColor = 'rgb(120, 120, 255)';
       });
+
       //cancel//
       cancel.addEventListener('mousedown', function() {
         cancel.style.backgroundColor = 'gray';
