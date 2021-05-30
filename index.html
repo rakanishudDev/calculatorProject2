@@ -5,10 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project one</title>
     <style>
+      .calc {
+        width: 300px;
+        border-style: solid;
+        border-width: 2px;
+        border-radius: 5px;
+      }
      .display {
        width: 300px;
        height: 75px;
-      background-color: gray;
+       background-color: gray;
+       font-size: 30px;
      }
      .keyboard {
        width: 300px;
@@ -23,33 +30,52 @@
      .grid-item {
        background-color: rgb(139, 139, 255);
        text-align: center;
+       border-style: solid;
+       border-width: 1px;
      }
-
+     .operatorVõrdub {
+       text-align: center;
+       background-color: rgb(120, 120, 255);
+       border-style: solid;
+       border-width: 1px;
+     }
+     .operator {
+       text-align: center;
+       background-color: rgb(120, 120, 255);
+       border-style: solid;
+       border-width: 1px;
+     }
+     .operatorCancel {
+       text-align: center;
+       background-color: rgb(120, 120, 255);
+       border-style: solid;
+       border-width: 1px;
+     }
 
     </style>
   </head>
   <body>
-    <div>
+    <div class="calc">
 
       <div class="display"></div>
 
       <div class="keyboard">
-        <div class="grid-item">1</div>
-        <div class="grid-item">2</div>
+        <div class="grid-item" value="1">1</div>
+        <div class="grid-item" value="2">2</div>
         <div class="grid-item">3</div>
-        <div class="grid-item">=</div>
+        <div class="operatorVõrdub">=</div>
         <div class="grid-item">4</div>
         <div class="grid-item">5</div>
         <div class="grid-item">6</div>
-        <div class="grid-item">C</div>
+        <div class="operatorCancel">C</div>
         <div class="grid-item">7</div>
         <div class="grid-item">8</div>
         <div class="grid-item">9</div>
         <div class="grid-item">0</div>
-        <div class="grid-item">+</div>
-        <div class="grid-item">-</div>
-        <div class="grid-item">*</div>
-        <div class="grid-item">/</div>
+        <div class="operator">+</div>
+        <div class="operator">-</div>
+        <div class="operator">*</div>
+        <div class="operator">/</div>
 
 
 
@@ -62,15 +88,246 @@
 
 
     <script>
-
+      const display = document.querySelector('.display');
       const gridItem = document.querySelectorAll('.grid-item');
+      const operators = document.querySelectorAll('.operator');
+      const operatorVõrdub = document.querySelector('.operatorVõrdub');
+      const cancel = document.querySelector('.operatorCancel');
+
+      // object for calculations //
+      let number = {
+        0: {
+          numb: '',
+          operator: '',
+          boolean: false
+        },
+        1: {
+          numb: '',
+          operator: '',
+          boolean: false
+        },
+        2: {
+          numb: '',
+          operator: '',
+          boolean: false
+        },
+        3: {
+          numb: '',
+          operator: '',
+          boolean: false
+        },
+        4: {
+          numb: '',
+          operator: '',
+          boolean: false
+        },
+        5: {
+          numb: '',
+          operator: '',
+          boolean: false
+        },
+        6: {
+          numb: '',
+          operator: '',
+          boolean: false
+        },
+        7: {
+          numb: '',
+          operator: '',
+          boolean: false
+        },
+        8: {
+          numb: '',
+          operator: '',
+          boolean: false
+        },
+        9: {
+          numb: '',
+          operator: '',
+          boolean: false
+        },
+        10: {
+          numb: '',
+          operator: '',
+          boolean: false
+        },
+        11: {
+          numb: '',
+          operator: '',
+          boolean: false
+        },
+        12: {
+          numb: '',
+          operator: '',
+          boolean: false
+        },
+        13: {
+          numb: '',
+          operator: '',
+          boolean: false
+        },
+        14: {
+          numb: '',
+          operator: '',
+          boolean: false
+        },
+        15: {
+          numb: '',
+          operator: '',
+          boolean: false
+        },
+        16: {
+          numb: '',
+          operator: '',
+          boolean: false
+        },
+        17: {
+          numb: '',
+          operator: '',
+          boolean: false
+        },
+        18: {
+          numb: '',
+          operator: '',
+          boolean: false
+        },
+        19: {
+          numb: '',
+          operator: '',
+          boolean: false
+        },
+        20: {
+          numb: '',
+          operator: '',
+          boolean: false
+        },
+        21: {
+          numb: '',
+          operator: '',
+          boolean: false
+        },
+        counter: 0
+      };
+
+
+
+
+
+
+      // keyboard EventListener //
+      let calcNumber = 0;
       for (let i = 0; i < gridItem.length; i++) {
         gridItem[i].addEventListener('click', function() {
+          console.log(gridItem[i].textContent);
+          calcNumber = gridItem[i].textContent;
+          updateDisplay(calcNumber);
+          updateingObject(calcNumber);
+          
+
+        });
+      };
+
+      // operators EventListener //
+      for (let i = 0; i < operators.length; i++) {
+        operators[i].addEventListener('click', function() {
+          let operator = operators[i].textContent;
+          console.log(operator + ' operator');
+          updateDisplay(operator);
+          
+            number[number.counter].operator = operator;
+            number[number.counter].boolean = true;
+           
+          number.counter++;
+          
+        });
+      };
+     
+      // operatorVõrdus EventListener //
+      let vastus = 0;
+      operatorVõrdub.addEventListener('click', function() {
+        console.log('võrdusFunction');
+        vastus = Number(number[0].numb);
+        counter = Number(number.counter);
+        for (let i = 0; i < counter; i++) {
+          switch (number[i].operator) {
+            case '+': vastus += Number(number[(i + 1)].numb);
+            break;
+            case '-': vastus -= Number(number[(i + 1)].numb);
+            break;
+            case '*': vastus *= Number(number[(i + 1)].numb);
+            break;
+            case '/': vastus /= Number(number[(i + 1)].numb);
+          }
+        };
+        displayVastus(vastus);
+      });
+
+      
+
+      function updateingObject(x) {
+        number[number.counter].numb += x;
+      };
+
+      function updateDisplay(x) {
+        calcNumber = x
+        display.textContent += calcNumber;
+        console.log(calcNumber+ ' calcNumb display');
+      };
+      function displayVastus(x) {
+        display.textContent = x;
+        console.log('Answer is ' + vastus);
+      }
+
+      // cancel EventListener //
+      cancel.addEventListener('click', function() {
+        display.textContent = '';
+        for (let i = 0; i < number.counter + 1; i++) {
+          number[i].numb = '';
+          number[i].operator = '';
+          number[i].boolean = false;
+        }
+        vastus = 0;
+        number.counter = 0;
+
+      });
+
+      // calculator buttons effect //
+      //numbers//
+      for (let i = 0; i < gridItem.length; i++) {
+        gridItem[i].addEventListener('mousedown', function() {
           gridItem[i].style.backgroundColor = 'purple';
         });
+      };
+      for (let i = 0; i < gridItem.length; i++) {
+        gridItem[i].addEventListener('mouseup', function() {
+          gridItem[i].style.backgroundColor = 'rgb(139, 139, 255)';
+        })
       }
-     
-       
+      //operators//
+      for (let i = 0; i < operators.length; i++) {
+        operators[i].addEventListener('mousedown', function() {
+          operators[i].style.backgroundColor = 'purple';
+        });
+      };
+      for (let i = 0; i < operators.length; i++) {
+        operators[i].addEventListener('mouseup', function() {
+          operators[i].style.backgroundColor = 'rgb(139, 139, 255)';
+        })
+      }
+      //võrdub//
+      operatorVõrdub.addEventListener('mousedown', function() {
+        operatorVõrdub.style.backgroundColor = 'green';
+      });
+      operatorVõrdub.addEventListener('mouseup', function() {
+        operatorVõrdub.style.backgroundColor = 'rgb(120, 120, 255)';
+      });
+      //cancel//
+      cancel.addEventListener('mousedown', function() {
+        cancel.style.backgroundColor = 'gray';
+      });
+      cancel.addEventListener('mouseup', function() {
+        cancel.style.backgroundColor = 'rgb(120, 120, 255)';
+      });
       
       
     </script>
